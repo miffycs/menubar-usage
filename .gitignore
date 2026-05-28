@@ -1,0 +1,25 @@
+.venv/
+__pycache__/
+.mypy_cache/
+.ruff_cache/
+.claude/settings.local.json
+*.log
+pricing_cache.json
+usage.log
+usage.err.log
+.DS_Store
+build/
+dist/
+*.egg-info/
+.pytest_cache/
+.coverage
+.antigravitycli/
+
+# Local session handoff notes (per-machine, not source)
+SESSION.md
+
+# Stray Instagram / scratch image dumps in repo root
+/ig_*.png
+
+# Misplaced Claude auto-memory (real location is ~/.claude/projects/.../memory/)
+/memory/
