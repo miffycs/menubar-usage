@@ -49,13 +49,13 @@ jobs:
       - name: Verify .app bundle contents
         run: |
           set -e
-          if [[ -d dist/main.app && ! -d dist/usage.app ]]; then
-            mv dist/main.app dist/usage.app
+          if [[ -d dist/main.app && ! -d dist/menubar-usage.app ]]; then
+            mv dist/main.app dist/menubar-usage.app
           fi
 
           dump_resources() {
             echo "Contents/Resources listing:"
-            ls -lR dist/usage.app/Contents/Resources | head -50 || true
+            ls -lR dist/menubar-usage.app/Contents/Resources | head -50 || true
           }
 
           verify_file() {
@@ -66,24 +66,24 @@ jobs:
             fi
           }
 
-          if [[ ! -d dist/usage.app ]]; then
-            echo "Missing app bundle: dist/usage.app"
+          if [[ ! -d dist/menubar-usage.app ]]; then
+            echo "Missing app bundle: dist/menubar-usage.app"
             ls -l dist || true
             exit 1
           fi
 
-          verify_file dist/usage.app/Contents/Resources/usage_statusline.py
-          verify_file dist/usage.app/Contents/Resources/claude.webp
-          verify_file dist/usage.app/Contents/Resources/codex.webp
-          verify_file dist/usage.app/Contents/Info.plist
+          verify_file dist/menubar-usage.app/Contents/Resources/usage_statusline.py
+          verify_file dist/menubar-usage.app/Contents/Resources/claude.webp
+          verify_file dist/menubar-usage.app/Contents/Resources/codex.webp
+          verify_file dist/menubar-usage.app/Contents/Info.plist
 
       - name: Zip .app
         run: |
-          cd dist && zip -r usage.app.zip usage.app
+          cd dist && zip -r menubar-usage.app.zip menubar-usage.app
 
       - name: Generate SHA256
         run: |
-          cd dist && shasum -a 256 usage.app.zip | tee usage.app.zip.sha256
+          cd dist && shasum -a 256 menubar-usage.app.zip | tee menubar-usage.app.zip.sha256
 
       - name: Extract release notes from CHANGELOG.en.md
         id: notes
@@ -91,13 +91,15 @@ jobs:
           TAG="${{ steps.ref.outputs.tag }}"
           VERSION="${TAG#v}"
           NOTES_FILE="$(mktemp)"
-          awk -v v="$VERSION" '
-            $0 ~ "^## \\[" v "\\]" { flag=1; next }
-            /^## \[/ && flag { exit }
-            flag { print }
-          ' CHANGELOG.en.md > "$NOTES_FILE"
+          if [[ -f CHANGELOG.en.md ]]; then
+            awk -v v="$VERSION" '
+              $0 ~ "^## \\[" v "\\]" { flag=1; next }
+              /^## \[/ && flag { exit }
+              flag { print }
+            ' CHANGELOG.en.md > "$NOTES_FILE"
+          fi
           if [[ ! -s "$NOTES_FILE" ]]; then
-            echo "CHANGELOG.en.md has no section for [$VERSION]; using empty notes."
+            echo "No release notes for [$VERSION]; falling back to auto-generated notes."
           fi
           echo "path=$NOTES_FILE" >> "$GITHUB_OUTPUT"
 
@@ -106,14 +108,22 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           if ! gh release view "${{ steps.ref.outputs.tag }}" >/dev/null 2>&1; then
-            gh release create \
-              "${{ steps.ref.outputs.tag }}" \
-              --target "${{ github.sha }}" \
-              --title "${{ steps.ref.outputs.tag }}" \
-              --notes-file "${{ steps.notes.outputs.path }}"
+            if [[ -s "${{ steps.notes.outputs.path }}" ]]; then
+              gh release create \
+                "${{ steps.ref.outputs.tag }}" \
+                --target "${{ github.sha }}" \
+                --title "${{ steps.ref.outputs.tag }}" \
+                --notes-file "${{ steps.notes.outputs.path }}"
+            else
+              gh release create \
+                "${{ steps.ref.outputs.tag }}" \
+                --target "${{ github.sha }}" \
+                --title "${{ steps.ref.outputs.tag }}" \
+                --generate-notes
+            fi
           fi
 
       - name: Upload to release
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh release upload "${{ steps.ref.outputs.tag }}" dist/usage.app.zip dist/usage.app.zip.sha256 --clobber
+        run: gh release upload "${{ steps.ref.outputs.tag }}" dist/menubar-usage.app.zip dist/menubar-usage.app.zip.sha256 --clobber
