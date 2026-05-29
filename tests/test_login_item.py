@@ -13,7 +13,7 @@ import login_item
 
 
 def _configure_login_item_paths(monkeypatch: pytest.MonkeyPatch, tmp_path: Path) -> Path:
-    plist_path = tmp_path / "LaunchAgents" / "io.miffy.menubar-usage.plist"
+    plist_path = tmp_path / "LaunchAgents" / "io.miffy.token-usage.plist"
     monkeypatch.setattr(login_item, "PLIST_PATH", plist_path)
     monkeypatch.setattr(login_item, "_LOG_DIR", tmp_path / "Logs" / "usage")
     monkeypatch.setattr(login_item, "_plist_text", lambda: "plist")
@@ -59,7 +59,7 @@ def test_build_plist_for_source_context() -> None:
 
 
 def test_is_enabled_uses_plist_path(monkeypatch: pytest.MonkeyPatch, tmp_path: Path) -> None:
-    plist_path = tmp_path / "io.miffy.menubar-usage.plist"
+    plist_path = tmp_path / "io.miffy.token-usage.plist"
     monkeypatch.setattr(login_item, "PLIST_PATH", plist_path)
 
     assert login_item.is_enabled() is False
@@ -70,7 +70,7 @@ def test_is_enabled_uses_plist_path(monkeypatch: pytest.MonkeyPatch, tmp_path: P
 
 
 def test_disable_removes_plist(monkeypatch: pytest.MonkeyPatch, tmp_path: Path) -> None:
-    plist_path = tmp_path / "io.miffy.menubar-usage.plist"
+    plist_path = tmp_path / "io.miffy.token-usage.plist"
     plist_path.write_text("plist", encoding="utf-8")
     monkeypatch.setattr(login_item, "PLIST_PATH", plist_path)
     monkeypatch.setattr(login_item, "_launchctl_bootout", lambda: None)

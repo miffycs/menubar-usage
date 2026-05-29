@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# Install the menubar-usage Claude Code statusLine hook.
+# Install the token-usage Claude Code statusLine hook.
 # For users who only downloaded the .app and don't have the source:
-#   bash <(curl -fsSL https://raw.githubusercontent.com/miffycs/menubar-usage/master/scripts/install-hook.sh)
+#   bash <(curl -fsSL https://raw.githubusercontent.com/miffycs/token-usage/master/scripts/install-hook.sh)
 #
 # What it does:
 #   1. Downloads usage_statusline.py to ~/.claude/usage-statusline.py
@@ -9,7 +9,7 @@
 #   3. Backs up any pre-existing statusLine under settings.usage.previousStatusLine
 set -euo pipefail
 
-REPO_RAW="https://raw.githubusercontent.com/miffycs/menubar-usage/master"
+REPO_RAW="https://raw.githubusercontent.com/miffycs/token-usage/master"
 CLAUDE_DIR="${HOME}/.claude"
 HOOK_PATH="${CLAUDE_DIR}/usage-statusline.py"
 SETTINGS_PATH="${CLAUDE_DIR}/settings.json"
@@ -54,4 +54,4 @@ PY
 echo
 echo "✓ Done"
 echo "→ Fully quit Claude Code (Cmd+Q) and reopen it,"
-echo "  then click 'Refresh Now' in the menubar-usage window."
+echo "  then click 'Refresh Now' in the token-usage window."

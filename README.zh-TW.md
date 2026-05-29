@@ -1,4 +1,4 @@
-# menubar-usage
+# token-usage
 
 [English](README.md) · 繁體中文
 
@@ -17,8 +17,8 @@
 ### 從原始碼
 
 ```bash
-git clone https://github.com/miffycs/menubar-usage.git
-cd menubar-usage
+git clone https://github.com/miffycs/token-usage.git
+cd token-usage
 python3 -m venv .venv && source .venv/bin/activate
 pip install -e .
 python3 main.py
@@ -26,7 +26,7 @@ python3 main.py
 
 ### 預先打包的 .app
 
-從 [Releases 頁面](https://github.com/miffycs/menubar-usage/releases) 下載 `menubar-usage.app.zip`(待發佈),解壓後拖到 `/Applications`。
+從 [Releases 頁面](https://github.com/miffycs/token-usage/releases) 下載 `token-usage.app.zip`(待發佈),解壓後拖到 `/Applications`。
 
 ### 開機自動啟動(僅限原始碼安裝)
 

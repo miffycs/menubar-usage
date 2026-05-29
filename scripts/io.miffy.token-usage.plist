@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>Label</key>
-    <string>io.miffy.menubar-usage</string>
+    <string>io.miffy.token-usage</string>
     <key>RunAtLoad</key>
     <true/>
     <key>KeepAlive</key>

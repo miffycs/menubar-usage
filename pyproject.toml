@@ -1,6 +1,6 @@
 [project]
-name = "menubar-usage"
-version = "0.1.0"
+name = "token-usage"
+version = "0.2.0"
 description = "A macOS menu bar (and TUI) app showing live Claude Code and Codex token usage."
 readme = "README.md"
 requires-python = ">=3.13"
@@ -14,9 +14,9 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/miffycs/menubar-usage"
-Repository = "https://github.com/miffycs/menubar-usage"
-Issues = "https://github.com/miffycs/menubar-usage/issues"
+Homepage = "https://github.com/miffycs/token-usage"
+Repository = "https://github.com/miffycs/token-usage"
+Issues = "https://github.com/miffycs/token-usage/issues"
 
 [build-system]
 requires = ["setuptools>=77"]

@@ -1,4 +1,4 @@
-# menubar-usage
+# token-usage
 
 English · [繁體中文](README.zh-TW.md)
 
@@ -17,8 +17,8 @@ A macOS menu bar app that shows live Claude Code and Codex token usage and estim
 ### From source
 
 ```bash
-git clone https://github.com/miffycs/menubar-usage.git
-cd menubar-usage
+git clone https://github.com/miffycs/token-usage.git
+cd token-usage
 python3 -m venv .venv && source .venv/bin/activate
 pip install -e .
 python3 main.py
@@ -26,7 +26,7 @@ python3 main.py
 
 ### Pre-built .app
 
-Download `menubar-usage.app.zip` from the [Releases page](https://github.com/miffycs/menubar-usage/releases) once releases are cut, unzip, and drop into `/Applications`.
+Download `token-usage.app.zip` from the [Releases page](https://github.com/miffycs/token-usage/releases) once releases are cut, unzip, and drop into `/Applications`.
 
 ### Auto-start at login (source install only)
 

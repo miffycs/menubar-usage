@@ -232,7 +232,7 @@ def _update_dismissed_recently(prefs: dict[str, Any]) -> bool:
 
 def _current_version() -> str:
     try:
-        return metadata.version("usage")
+        return metadata.version("token-usage")
     except metadata.PackageNotFoundError as exc:
         pyproject = packaged_resource_path(
             "pyproject.toml", Path(__file__).with_name("pyproject.toml")
@@ -1087,24 +1087,24 @@ class AppDelegate(NSObject):
         if self.mock:
             if hours_back <= 0:
                 return [
-                    ("menubar-usage", 624_000_000, 361.00),
+                    ("token-usage", 624_000_000, 361.00),
                     ("ui-watercolor-reveal", 172_800_000, 100.24),
                     ("osu", 44_000_000, 26.40),
                 ]
             if hours_back <= 24:
                 return [
-                    ("menubar-usage", 11_200_000, 6.47),
+                    ("token-usage", 11_200_000, 6.47),
                     ("ui-watercolor-reveal", 3_100_000, 1.82),
                     ("osu", 800_000, 0.48),
                 ]
             if hours_back <= 168:
                 return [
-                    ("menubar-usage", 78_400_000, 45.20),
+                    ("token-usage", 78_400_000, 45.20),
                     ("ui-watercolor-reveal", 21_700_000, 12.74),
                     ("osu", 5_600_000, 3.36),
                 ]
             return [
-                ("menubar-usage", 312_000_000, 180.50),
+                ("token-usage", 312_000_000, 180.50),
                 ("ui-watercolor-reveal", 86_400_000, 50.12),
                 ("osu", 22_000_000, 13.20),
             ]

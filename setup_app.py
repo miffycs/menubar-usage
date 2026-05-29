@@ -85,9 +85,9 @@ if __name__ == "__main__":
             "rich.text",
         ],
         "plist": {
-            "CFBundleIdentifier": "io.miffy.menubar-usage",
-            "CFBundleName": "menubar-usage",
-            "CFBundleDisplayName": "menubar-usage",
+            "CFBundleIdentifier": "io.miffy.token-usage",
+            "CFBundleName": "token-usage",
+            "CFBundleDisplayName": "token-usage",
             "CFBundleShortVersionString": version,
             "CFBundleVersion": version,
             "LSUIElement": True,

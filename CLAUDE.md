@@ -83,7 +83,7 @@ Claude Code ──stdin──> usage_statusline.py (hook) ──write──> ~/.
 
 ### Naming invariant
 
-Everything user-facing and on-disk uses the `usage` prefix: bundle id `io.miffy.menubar-usage`, LaunchAgent label, hook filename, status filename, settings backup key.
+Everything user-facing and on-disk uses the `usage` prefix: bundle id `io.miffy.token-usage`, LaunchAgent label, hook filename, status filename, settings backup key.
 
 ### i18n rule
 
@@ -92,5 +92,5 @@ All user-visible strings in panels and UI **must** be looked up from `i18n.json`
 ### Release / changelog
 
 - Docs are English-only.
-- Version is bumped in `pyproject.toml`; CI builds `menubar-usage.app.zip` and attaches it on `v*` tags (`.github/workflows/release.yml`).
-- The `.app` build flow renames `dist/main.app` → `dist/menubar-usage.app` (see `scripts/build_app.sh`) — this is expected, not a bug.
+- Version is bumped in `pyproject.toml`; CI builds `token-usage.app.zip` and attaches it on `v*` tags (`.github/workflows/release.yml`).
+- The `.app` build flow renames `dist/main.app` → `dist/token-usage.app` (see `scripts/build_app.sh`) — this is expected, not a bug.

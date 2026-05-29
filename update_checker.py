@@ -7,7 +7,7 @@ import urllib.request
 from dataclasses import dataclass
 from typing import Any
 
-GITHUB_RELEASES_API = "https://api.github.com/repos/miffycs/menubar-usage/releases/latest"
+GITHUB_RELEASES_API = "https://api.github.com/repos/miffycs/token-usage/releases/latest"
 
 
 @dataclass(frozen=True, slots=True)

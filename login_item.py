@@ -12,7 +12,7 @@ from Foundation import NSBundle
 
 logger = logging.getLogger(__name__)
 
-LABEL = "io.miffy.menubar-usage"
+LABEL = "io.miffy.token-usage"
 PLIST_PATH = Path.home() / "Library" / "LaunchAgents" / f"{LABEL}.plist"
 _LOG_DIR = Path.home() / "Library" / "Logs" / "usage"
 

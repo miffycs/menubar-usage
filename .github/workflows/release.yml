@@ -49,13 +49,13 @@ jobs:
       - name: Verify .app bundle contents
         run: |
           set -e
-          if [[ -d dist/main.app && ! -d dist/menubar-usage.app ]]; then
-            mv dist/main.app dist/menubar-usage.app
+          if [[ -d dist/main.app && ! -d dist/token-usage.app ]]; then
+            mv dist/main.app dist/token-usage.app
           fi
 
           dump_resources() {
             echo "Contents/Resources listing:"
-            ls -lR dist/menubar-usage.app/Contents/Resources | head -50 || true
+            ls -lR dist/token-usage.app/Contents/Resources | head -50 || true
           }
 
           verify_file() {
@@ -66,24 +66,24 @@ jobs:
             fi
           }
 
-          if [[ ! -d dist/menubar-usage.app ]]; then
-            echo "Missing app bundle: dist/menubar-usage.app"
+          if [[ ! -d dist/token-usage.app ]]; then
+            echo "Missing app bundle: dist/token-usage.app"
             ls -l dist || true
             exit 1
           fi
 
-          verify_file dist/menubar-usage.app/Contents/Resources/usage_statusline.py
-          verify_file dist/menubar-usage.app/Contents/Resources/claude.webp
-          verify_file dist/menubar-usage.app/Contents/Resources/codex.webp
-          verify_file dist/menubar-usage.app/Contents/Info.plist
+          verify_file dist/token-usage.app/Contents/Resources/usage_statusline.py
+          verify_file dist/token-usage.app/Contents/Resources/claude.webp
+          verify_file dist/token-usage.app/Contents/Resources/codex.webp
+          verify_file dist/token-usage.app/Contents/Info.plist
 
       - name: Zip .app
         run: |
-          cd dist && zip -r menubar-usage.app.zip menubar-usage.app
+          cd dist && zip -r token-usage.app.zip token-usage.app
 
       - name: Generate SHA256
         run: |
-          cd dist && shasum -a 256 menubar-usage.app.zip | tee menubar-usage.app.zip.sha256
+          cd dist && shasum -a 256 token-usage.app.zip | tee token-usage.app.zip.sha256
 
       - name: Extract release notes from CHANGELOG.en.md
         id: notes
@@ -126,4 +126,4 @@ jobs:
       - name: Upload to release
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh release upload "${{ steps.ref.outputs.tag }}" dist/menubar-usage.app.zip dist/menubar-usage.app.zip.sha256 --clobber
+        run: gh release upload "${{ steps.ref.outputs.tag }}" dist/token-usage.app.zip dist/token-usage.app.zip.sha256 --clobber

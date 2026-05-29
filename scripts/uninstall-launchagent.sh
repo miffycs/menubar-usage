@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-PLIST_NAME="io.miffy.menubar-usage.plist"
+PLIST_NAME="io.miffy.token-usage.plist"
 TARGET_PLIST="${HOME}/Library/LaunchAgents/${PLIST_NAME}"
 
 echo "Unloading LaunchAgent..."

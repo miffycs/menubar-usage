@@ -4,7 +4,7 @@ cd "$(dirname "$BASH_SOURCE")/.."
 rm -rf build dist
 uv sync --group build
 uv run python3 setup_app.py py2app
-if [[ -d dist/main.app && ! -d dist/menubar-usage.app ]]; then
-  mv dist/main.app dist/menubar-usage.app
+if [[ -d dist/main.app && ! -d dist/token-usage.app ]]; then
+  mv dist/main.app dist/token-usage.app
 fi
-echo "Built: dist/menubar-usage.app"
+echo "Built: dist/token-usage.app"

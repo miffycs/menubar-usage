@@ -4,7 +4,7 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
 VENV_PYTHON="${PROJECT_DIR}/.venv/bin/python3"
-PLIST_NAME="io.miffy.menubar-usage.plist"
+PLIST_NAME="io.miffy.token-usage.plist"
 TARGET_PLIST="${HOME}/Library/LaunchAgents/${PLIST_NAME}"
 
 if [ ! -f "$VENV_PYTHON" ]; then
@@ -24,4 +24,4 @@ echo "Loading LaunchAgent..."
 launchctl unload "${TARGET_PLIST}" 2>/dev/null || true
 launchctl load "${TARGET_PLIST}"
 
-echo "✓ Installed. Will auto-start on next login. To start now: launchctl start io.miffy.menubar-usage"
+echo "✓ Installed. Will auto-start on next login. To start now: launchctl start io.miffy.token-usage"
