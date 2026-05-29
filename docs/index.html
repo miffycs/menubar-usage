@@ -257,6 +257,7 @@ section .subtitle {
   border: 1px solid var(--border);
   border-radius: 14px;
   padding: 28px;
+  min-width: 0;
 }
 .install-card .label { font-size: 12px; font-family: var(--mono); color: var(--accent); margin-bottom: 10px; letter-spacing: 0.04em; }
 .install-card h3 { font-size: 20px; margin-bottom: 10px; }
@@ -382,8 +383,13 @@ pre {
   margin: 0 auto;
   border-radius: 12px;
   border: 1px solid var(--border);
-  max-width: 760px;
+  max-width: min(760px, 100%);
   box-shadow: 0 20px 60px -16px rgba(0, 0, 0, 0.6);
+}
+
+@media (max-width: 560px) {
+  .report { padding: 36px 16px; }
+  .install-card { padding: 22px; }
 }
 
 /* Footer */
